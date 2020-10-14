@@ -12,10 +12,3 @@ def countdown(t):
 		t -= 1
 
 	print('Fire in the hole!!')
-
-
-# input time in seconds 
-t = input("Enter the time in seconds: ")
-
-# function call 
-countdown(int(t))

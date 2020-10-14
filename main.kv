@@ -1,7 +1,12 @@
+#:import Clock kivy.clock.Clock
+
 Manager:
     Main:
+    Second:
 
 <Main>:
+    name: 'main'
+
     bg: 0, 0, 0, 1
 
     reqText: reqText
@@ -36,4 +41,28 @@ Manager:
             theme_text_color: 'Primary'
             pos_hint: {"center_x": 0.5, "center_y": 0.4}
             size_hint: (0.3, 0.075)
-            on_press: root.btn()
+            on_press:
+                root.manager.current= 'second'
+                Clock.schedule_once(root.btn, 1)
+
+
+
+<Second>:
+    name: 'second'
+
+    bg: 0, 0, 0, 1
+
+    timer: timer
+
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: root.bg
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        MDLabel:
+            id: timer
+            theme_text_color: 'Primary'
+            halign: "center"

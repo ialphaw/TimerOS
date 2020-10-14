@@ -2,8 +2,9 @@ from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.widget import Widget
-
 from kivymd.app import MDApp
+
+from timer import countdown
 
 
 class Manager(ScreenManager):
@@ -14,9 +15,20 @@ class Main(Screen):
     reqText = ObjectProperty(None)
     timeText = ObjectProperty(None)
 
-    def btn(self):
-        print(self.reqText.text)
-        print(self.timeText.text)
+    def btn(self, args):
+        countdown(int(self.timeText.text))
+
+
+class Second(Screen):
+    timer = ObjectProperty(None)
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    #TODO: set the MDLabel into an timer
+
+
+
 
 
 class MyLayout(Widget):
