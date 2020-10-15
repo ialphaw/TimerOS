@@ -1,37 +1,51 @@
+import time
+
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.widget import Widget
 from kivymd.app import MDApp
 
-from timer import countdown
+from activity import reqActivity
 
 
 class Manager(ScreenManager):
-    pass
+    m2 = ObjectProperty(None)
+
+    req = ' '
+    timex = 1
+
+    def info(self):
+        self.req = self.m1.reqText.text
+        self.timex = int(self.m1.timeText.text)
+
+        print(self.req)
+        print(self.timex)
+
+    def test(self, args):
+        if self.timex > 0:
+            self.timex -= 1
+        else:
+            self.m1.btn()
+        self.m2.timer.text = f'Your Computer Will Be {self.req} In {self.timex} Seconds'
+        time.sleep(1)
 
 
 class Main(Screen):
     reqText = ObjectProperty(None)
     timeText = ObjectProperty(None)
 
-    def btn(self, args):
-        countdown(int(self.timeText.text))
+    def btn(self):
+        reqActivity(self.reqText, self.timeText)
 
 
 class Second(Screen):
-    timer = ObjectProperty(None)
+    # TODO: set the MDLabel into an timer
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-    #TODO: set the MDLabel into an timer
+    pass
 
 
-
-
-
-class MyLayout(Widget):
+class MyLayout(FloatLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 

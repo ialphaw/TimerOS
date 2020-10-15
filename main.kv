@@ -1,8 +1,12 @@
 #:import Clock kivy.clock.Clock
 
 Manager:
+    m1: m1
+    m2: m2
     Main:
+        id: m1
     Second:
+        id: m2
 
 <Main>:
     name: 'main'
@@ -12,7 +16,7 @@ Manager:
     reqText: reqText
     timeText: timeText
 
-    FloatLayout:
+    MyLayout:
         canvas:
             Color:
                 rgba: root.bg
@@ -43,7 +47,10 @@ Manager:
             size_hint: (0.3, 0.075)
             on_press:
                 root.manager.current= 'second'
-                Clock.schedule_once(root.btn, 1)
+                app.root.info()
+                Clock.schedule_interval(app.root.test, 0.1)
+
+
 
 
 
@@ -54,7 +61,7 @@ Manager:
 
     timer: timer
 
-    FloatLayout:
+    MyLayout:
         canvas:
             Color:
                 rgba: root.bg
